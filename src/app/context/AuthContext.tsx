@@ -27,14 +27,17 @@ export const AuthContext = createContext<any>({});
 
 export const AuthContextProvider = ({children}: { children: React.ReactNode}) => {
     const [user, setUser] = useState<LoggedIn | LoggedOut | AuthenticationError>();
+    const [isUserAuthenticated, setIsUserAuthenticated] = useState<boolean>(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             // user is not logged in or does not exist
             if(!user) {
-                return setUser({
+                setUser({
                     success: false
                 })
+
+                return setIsUserAuthenticated(false)
             }
 
             setUser({
@@ -42,6 +45,8 @@ export const AuthContextProvider = ({children}: { children: React.ReactNode}) =>
                 email: user.email,
                 uid: user.uid
             })
+
+            setIsUserAuthenticated(true)
         })
 
         return () => unsubscribe();
@@ -55,7 +60,7 @@ export const AuthContextProvider = ({children}: { children: React.ReactNode}) =>
         })
     }
 
-    function authenticate(email: string, password: string) {
+    function signIn(email: string, password: string) {
         /* 
             @param email the email of the authenticating account
             @param password the password of the authenticating account
@@ -74,7 +79,7 @@ export const AuthContextProvider = ({children}: { children: React.ReactNode}) =>
     }
 
     return (
-        <AuthContext.Provider value={{ user, setUser, authenticate }}>
+        <AuthContext.Provider value={{ user, setUser, signIn, isUserAuthenticated, setIsUserAuthenticated }}>
             {children}
         </AuthContext.Provider>
     )

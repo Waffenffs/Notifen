@@ -2,7 +2,11 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FiAlertTriangle } from 'react-icons/fi'
 
-function FailedRegister() {
+function FailedAuthentication(props: {method: string }) {
+    /* 
+        @params method the 'method' for the authentication; either login or registration
+    */
+
   return (
     <React.Fragment>
             <motion.div
@@ -18,10 +22,10 @@ function FailedRegister() {
                     marginTop: '1rem'
                 }}
             >
-                <div className='cursor-pointer transition hover:bg-[#0f172a] bg-[#1f2937] p-5 rounded-xl max-w-md flex flex-row items-center gap-3'>
+                <div className='cursor-default bg-[#1f2937] p-5 rounded-xl max-w-md flex flex-row items-center gap-3'>
                     <FiAlertTriangle color='#cb4226' size={60} />
                     <div>
-                        <h1 className='text-[#cb4226] font-bold'>There was an error with your registration!</h1>
+                        <h1 className='text-[#cb4226] font-bold'>{props.method === 'register' ? 'There was an error with your registration!' : 'There was an error with your login!'}</h1>
                         <p className='text-[#ddd6fe] text-sm'>Carefully inspect your input fields, or you can message me through my Github account!</p>
                     </div>
                 </div>
@@ -30,4 +34,4 @@ function FailedRegister() {
   )
 }
 
-export default FailedRegister
+export default FailedAuthentication

@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 import { navigate } from '../functions/navigate';
 import { AnimatePresence } from 'framer-motion';
-import SuccessRegister from '../components/SuccessRegister';
-import FailedRegister from '../components/FailedRegister';
+import SuccessfulAuthentication from '../components/SuccessfulAuthentication';
+import FailedAuthentication from '../components/FailedAuthenticationModal';
 import { auth } from '@/app/config/firebaseConfig'
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
@@ -59,8 +59,8 @@ function Register() {
   return (
     <main className='w-screen h-screen bg-[#F0E8F8] flex justify-center items-center'>
         <AnimatePresence>
-            {successRegistration  && <SuccessRegister /> }
-            {failedRegistration && <FailedRegister /> }
+            {successRegistration  && <SuccessfulAuthentication method={"register"} /> }
+            {failedRegistration && <FailedAuthentication method={"register"} /> }
         </AnimatePresence>
       <article className='bg-white border shadow-xl border-black p-10 rounded-xl flex justify-center flex-col'>
           <div className='flex justify-center items-center border-indigo-500 -mt-24'>
