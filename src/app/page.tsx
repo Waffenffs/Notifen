@@ -44,7 +44,7 @@ export default function Home() {
         setSuccessfulLogin(false);
         setIsUserAuthenticated(true)
 
-        router.push('/dashboard')
+        router.push('/content')
       }, 3000);
 
       return () => clearTimeout(timer)
