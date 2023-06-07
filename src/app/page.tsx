@@ -113,7 +113,7 @@ export default function Home() {
           </form>
           <footer className='flex flex-row items-center gap-3'>
             <p className='text-sm'>If you do not have an account, you can register <span onClick={() => navigate('/register')} className='underline text-blue-500 cursor-pointer'>here</span></p>
-            <button onClick={handleSubmit} className='text-white bg-blue-500 p-3 px-4 shadow-xl border-blue-300 border-2 rounded delay-150 transition hover:bg-indigo-500 hover:border-indigo-300'>Login</button>
+            <button onClick={handleSubmit} className='text-white bg-blue-500 p-2 px-4 shadow-xl border-blue-300 border-2 rounded'>Login</button>
           </footer>
       </article>
     </main>

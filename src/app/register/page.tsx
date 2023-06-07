@@ -20,7 +20,7 @@ function Register() {
   const [successRegistration, setSuccessRegistration] = useState<boolean | null>(null);
   const [failedRegistration, setFailedRegistration] = useState<boolean | null>(null);
 
-  function handleSubmit(e: any) {
+  function handleSubmit(e: any): void {
     e.preventDefault()
 
     createUserWithEmailAndPassword(auth, registerEmail, registerPassword)
@@ -107,7 +107,7 @@ function Register() {
           </form>
           <footer className='flex flex-row items-center gap-3'>
             <p className='text-sm'>If you already have an account, you can go <span onClick={() => navigate('/')} className='underline text-blue-500 cursor-pointer'>here</span></p>
-            <button onClick={handleSubmit} className='text-white bg-blue-500 p-3 px-4 shadow-xl border-blue-300 border-2 rounded delay-150 transition hover:bg-indigo-500 hover:border-indigo-300'>Register</button>
+            <button onClick={handleSubmit} className='text-white bg-blue-500 p-2 px-4 shadow-xl border-blue-300 border-2 rounded'>Register</button>
           </footer>
       </article>
     </main>

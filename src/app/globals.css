@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active:hover #dashboard-text {
+    color: black
+}
+
+.active-1:hover #settings-text {
+    color: black
+}
