@@ -6,17 +6,14 @@ import { BsLayoutSidebarInset, BsLayoutSidebarInsetReverse } from 'react-icons/b
 import { motion } from 'framer-motion'
 
 function SideNav(props: {currentState: 'dashboard' | 'settings', changeState: React.Dispatch<React.SetStateAction<'dashboard' | 'settings'>>}) {
-    // make it toggleable, use something like framer motion.div and transition or something
 
     const [hovered, setHovered] = useState<boolean>(false);
     const [hoveredSettings, setHoveredSettings] = useState<boolean>(false);
     const [toggled, setToggled] = useState<boolean>(true);
 
-    // if !toggled, then show another shit
-
   return (
     <motion.nav
-        initial={{ width: '100%' }}
+
         animate={{ width: toggled ? '16rem' : '4rem' }}
         className={`${!toggled && 'pt-3'} px-3 h-screen bg-black w-1/6 flex flex-col items-center`}
     >
