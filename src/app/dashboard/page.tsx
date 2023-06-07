@@ -9,7 +9,7 @@ import DashboardComponent from '../components/Dashboard'
 import Settings from '../components/Settings'
 
 function Dashboard() {
-  const [currentState, setCurrentState] = useState<'dashboard' | 'settings' | null>(null);
+  const [currentState, setCurrentState] = useState<'dashboard' | 'settings'>('dashboard');
   
   const { _, __, ___, isUserAuthenticated } = useAuthContext();
 

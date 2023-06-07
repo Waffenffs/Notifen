@@ -3,9 +3,8 @@ import Image from 'next/image'
 import { RxDashboard } from 'react-icons/rx'
 import { FiSettings } from 'react-icons/fi'
 
-function SideNav(props: {currentState: 'dashboard' | 'settings' | null, changeState: React.Dispatch<React.SetStateAction<'dashboard' | 'settings' | null>>}) {
-    // when user clicks either dashboard or settings
-    // render those components
+function SideNav(props: {currentState: 'dashboard' | 'settings', changeState: React.Dispatch<React.SetStateAction<'dashboard' | 'settings'>>}) {
+
     const [hovered, setHovered] = useState<boolean>(false);
     const [hoveredSettings, setHoveredSettings] = useState<boolean>(false);
 
@@ -22,20 +21,20 @@ function SideNav(props: {currentState: 'dashboard' | 'settings' | null, changeSt
         <button 
             onMouseEnter={() => setHovered(true)} 
             onMouseLeave={() => setHovered(false)} 
-            className='mb-3 w-full flex flex-row gap-3 items-center hover:bg-white p-3 rounded-xl transition active'
-            onClick={() => props.changeState('dashboard')}
+            className={`${props.currentState === 'dashboard' && 'bg-white'} mb-3 w-full flex flex-row gap-3 items-center hover:bg-white p-3 rounded-xl transition active`}
+            onClick={() => {props.changeState('dashboard')}}
         >
-            <RxDashboard color={hovered ? 'black' : 'white'} size={30} id='dashboard-icon' />
-            <span id='dashboard-text' className='font-medium text-white'>Dashboard</span>
+            <RxDashboard color={props.currentState === 'dashboard' || hovered ? 'black' : 'white'} size={30} />
+            <span id='dashboard-text' className={`${props.currentState === 'dashboard' ? 'text-black' : 'text-white'} font-medium`}>Dashboard</span>
         </button>
         <button
             onMouseEnter={() => setHoveredSettings(true)} 
             onMouseLeave={() => setHoveredSettings(false)} 
-            className='mb-3 w-full flex flex-row gap-3 items-center hover:bg-white p-3 rounded-xl transition active-1'
-            onClick={() => props.changeState('settings')}
+            className={`${props.currentState === 'settings' && 'bg-white'} mb-3 w-full flex flex-row gap-3 items-center hover:bg-white p-3 rounded-xl transition active-1`}
+            onClick={() => {props.changeState('settings')}}
         >
-            <FiSettings color={hoveredSettings ? 'black' : 'white'} size={30} />
-            <span id='settings-text' className='font-medium text-white'>Settings</span>
+            <FiSettings color={props.currentState === 'settings' || hoveredSettings ? 'black' : 'white'} size={30} />
+            <span id='settings-text' className={`${props.currentState === 'settings' ? 'text-black' : 'text-white'} font-medium`}>Settings</span>
         </button>
     </nav>
   )
