@@ -5,7 +5,7 @@ import DashboardHeader from './DashboardHeader';
 import DashboardButton from './DashboardButton';
 import CreateNoteModal from './CreateNoteModal';
 import { AnimatePresence } from 'framer-motion'
-import { collection, onSnapshot, query, getDocs, orderBy, serverTimestamp } from 'firebase/firestore'
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
 import { db } from '../content/page';
 import NormalNote from './NormalNote';
 import { uid } from 'uid'
