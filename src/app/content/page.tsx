@@ -7,11 +7,15 @@ import React from 'react'
 import SideNav from '../components/SideNav'
 import DashboardComponent from '../components/Dashboard'
 import Settings from '../components/Settings'
+import { app } from '../config/firebaseConfig'
+import { getFirestore } from 'firebase/firestore'
+
+export const db = getFirestore(app)
 
 function Dashboard() {
   const [currentState, setCurrentState] = useState<'dashboard' | 'settings'>('dashboard');
   
-  const { _, __, ___, isUserAuthenticated } = useAuthContext();
+  const { user, __, ___, isUserAuthenticated } = useAuthContext();
 
   const router = useRouter();
 
@@ -25,7 +29,7 @@ function Dashboard() {
       {isUserAuthenticated &&
         <main className='w-screen h-screen flex flex-row'>
           <SideNav currentState={currentState} changeState={setCurrentState} />
-          {currentState === 'dashboard' && <DashboardComponent />}
+          {currentState === 'dashboard' && <DashboardComponent user={user} />}
           {currentState === 'settings' && <Settings /> }
         </main>
       }
