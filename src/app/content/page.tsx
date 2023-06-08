@@ -27,7 +27,7 @@ function Dashboard() {
   return (
     <React.Fragment>
       {isUserAuthenticated &&
-        <main className='w-screen h-screen flex flex-row'>
+        <main className='w-screen h-screen flex flex-row bg-[#F0E8F8]'>
           <SideNav currentState={currentState} changeState={setCurrentState} />
           {currentState === 'dashboard' && <DashboardComponent user={user} />}
           {currentState === 'settings' && <Settings /> }

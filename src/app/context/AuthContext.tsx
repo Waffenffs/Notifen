@@ -8,21 +8,6 @@ import {
     UserCredential
 } from 'firebase/auth'
 
-interface LoggedOut {
-    success: false
-}
-
-interface LoggedIn {
-    success: true
-    email: string | null
-    uid: string | number | null
-}
-
-interface AuthenticationError {
-    success: false
-    error: any
-}
-
 export const AuthContext = createContext<any>({});
 
 export const AuthContextProvider = ({children}: { children: React.ReactNode}) => {

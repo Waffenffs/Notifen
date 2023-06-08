@@ -9,3 +9,14 @@
 .active-1:hover #settings-text {
     color: black
 }
+
+#customized-scrollbar::-webkit-scrollbar {
+    background-color: black;
+    border-radius: 1rem;
+    width: 0.60em;
+}
+
+#customized-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #D9D9D9;
+    border-radius: 1rem;
+}

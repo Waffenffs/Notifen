@@ -7,18 +7,17 @@ import CreateNoteModal from './CreateNoteModal';
 import { AnimatePresence } from 'framer-motion'
 import { collection, onSnapshot, query, getDocs, orderBy, serverTimestamp } from 'firebase/firestore'
 import { db } from '../content/page';
-import NormalNotes from './NormalNotes';
+import NormalNote from './NormalNote';
+import { uid } from 'uid'
 
-export interface Notes {
-  note_title: string
-  note_description: string
-  note_id: string
-  timestamp: any
-}
 
 function DashboardComponent(props: { user : any }) {
   const [toggleModal, setToggleModal] = useState<boolean>(false);
   const [notes, setNotes] = useState<Array<Notes>>([]);
+
+  // TO-DO:
+  // 1. add delete functionalities to the notes
+  // 2. add rewrite functionalities (possibly refactor note modal)
 
   // 1. fetch notes from firestore
   //    - if there are no notes, display a "no notes found"
@@ -59,7 +58,7 @@ function DashboardComponent(props: { user : any }) {
   }, [])
 
   return (
-    <main className='w-full'>
+    <main className='w-full h-screen'>
       <DashboardHeader />
       <DashboardButton currentState={toggleModal} changeState={setToggleModal} />
       {toggleModal && 
@@ -67,9 +66,17 @@ function DashboardComponent(props: { user : any }) {
           <CreateNoteModal user={props.user} currentState={toggleModal} changeState={setToggleModal} />
         </AnimatePresence>
       }
-      <section className='p-3'>
-        <h1 className='font-bold text-3xl text-slate-800'>{`Notes (${notes.length})`}</h1>
-        <NormalNotes notes={notes} />
+      <h1 className='pl-3 mb-3 font-bold text-3xl text-slate-800'>{`Notes (${notes.length})`}</h1>
+      <section id='customized-scrollbar' className='p-3 overflow-y-auto w-5/6 max-h-[22rem]'>
+        <div className='flex flex-col gap-2 '>
+          <NormalNote key={uid()} />
+          <NormalNote key={uid()} />
+          <NormalNote key={uid()} />
+          <NormalNote key={uid()} />
+          <NormalNote key={uid()} />
+          <NormalNote key={uid()} />
+          <NormalNote key={uid()} />
+        </div>
       </section>
     </main>
   )
