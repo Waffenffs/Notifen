@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react'
 import DashboardHeader from './DashboardHeader';
 import DashboardButton from './DashboardButton';
 import CreateNoteModal from './CreateNoteModal';
-import { AnimatePresence } from 'framer-motion'
-import { collection, onSnapshot, query, orderBy, deleteDoc, doc } from 'firebase/firestore'
+import { AnimatePresence, motion } from 'framer-motion'
+import { collection, onSnapshot, query, orderBy, deleteDoc, updateDoc, doc } from 'firebase/firestore'
 import { db } from '../content/page';
 import NormalNote from './NormalNote';
 import { uid } from 'uid'
@@ -61,6 +61,15 @@ function DashboardComponent(props: { user : any }) {
     setNotes(updatedNotes);
   }
 
+  async function updateData(id: string, title: string, description: string, noteTimestamp: any) {
+    await updateDoc(doc(db, `users/${props.user.uid}/notes`, id), {
+      note_title: title,
+      note_description: description,
+      timestamp: noteTimestamp
+    })
+    
+  }
+
   return (
     <main className='w-full h-screen'>
       <DashboardHeader />
@@ -80,7 +89,9 @@ function DashboardComponent(props: { user : any }) {
                 description={note.note_description}
                 key={uid()}
                 deleteNote={deleteData}
+                updateData={updateData}
                 id={note.note_id}
+                noteTimestamp={note.timestamp}
               />
             )
           })}

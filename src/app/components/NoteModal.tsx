@@ -7,7 +7,9 @@ function NoteModal(props: {
     description: string,
     changeState: React.Dispatch<React.SetStateAction<boolean>>,
     deleteNote: (id: string) => Promise<void>,
-    id: string
+    id: string,
+    updateData: any,
+    noteTimestamp: any,
 }) {
 
     const [title, setTitle] = useState<string>(props.title)
@@ -25,6 +27,14 @@ function NoteModal(props: {
     function handleDelete() {
         const timer = setTimeout(() => {
             props.deleteNote(props.id)
+        }, 2000);
+
+        return () => clearTimeout(timer)
+    }
+    
+    function handleEdit() {
+        const timer = setTimeout(() => {
+            props.updateData(props.id, title, description, props.noteTimestamp)    
         }, 2000);
 
         return () => clearTimeout(timer)
@@ -64,7 +74,7 @@ function NoteModal(props: {
                 ></textarea>
               </div>
               <div className='flex justify-end gap-2'>
-                <button className='w-20 text-white font-medium bg-green-500 border border-green-400 rounded p-2'>
+                <button onClick={handleEdit} className='w-20 text-white font-medium bg-green-500 border border-green-400 rounded p-2'>
                   Edit
                 </button>
                 <button onClick={handleDelete} className='w-20 text-black font-medium bg-red-600 border border-black rounded p-2'>

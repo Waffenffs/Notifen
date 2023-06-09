@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import NoteModal from './NoteModal'
+import { motion } from 'framer-motion'
 
 function NormalNote(props: {
     title: string, 
     description: string,
     deleteNote: (id: string) => Promise<void>,
-    id: string
+    id: string,
+    updateData: any,
+    noteTimestamp: any,
 }) {
     const [toggleNoteModal, setToggleNoteModal] = useState<boolean>(false);
 
@@ -25,6 +28,8 @@ function NormalNote(props: {
                     changeState={setToggleNoteModal}
                     deleteNote={props.deleteNote}
                     id={props.id}
+                    updateData={props.updateData}
+                    noteTimestamp={props.noteTimestamp}
                 />
             }
         </React.Fragment>
