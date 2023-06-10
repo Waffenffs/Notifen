@@ -16,6 +16,7 @@ declare global {
         success: true
         email: string | null
         uid: string | number | null
+        displayName: string | null
     }
     
     interface AuthenticationError {

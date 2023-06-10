@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import NoteModal from './NoteModal'
-import { motion } from 'framer-motion'
 
 function NormalNote(props: {
     title: string, 
     description: string,
-    deleteNote: (id: string) => Promise<void>,
+    deleteNote: any,
     id: string,
     updateData: any,
     noteTimestamp: any,
+    changeModalState: any
 }) {
     const [toggleNoteModal, setToggleNoteModal] = useState<boolean>(false);
 
@@ -19,7 +19,7 @@ function NormalNote(props: {
                 className='cursor-pointer bg-white border rounded-2xl border-black px-2 py-3 flex flex-col'
             >
                 <h1 className='text-2xl text-[#141C24] font-bold'>{props.title}</h1>
-                <span>January 9th, 2023</span>
+                <span>{props.noteTimestamp}</span>
             </article>
             {toggleNoteModal && 
                 <NoteModal 
@@ -30,6 +30,7 @@ function NormalNote(props: {
                     id={props.id}
                     updateData={props.updateData}
                     noteTimestamp={props.noteTimestamp}
+                    changeModalState={props.changeModalState}
                 />
             }
         </React.Fragment>

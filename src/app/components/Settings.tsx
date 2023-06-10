@@ -1,8 +1,13 @@
 import React from 'react'
+import SettingsHeader from './SettingsHeader'
+import SettingsAccountArticle from './SettingsAccountArticle'
 
 function Settings() {
   return (
-    <div>Settings</div>
+    <main className='w-full h-screen'>
+      <SettingsHeader />
+      <SettingsAccountArticle />
+    </main>
   )
 }
 

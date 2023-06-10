@@ -6,7 +6,8 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 function CreateNoteModal(props: {
   user: any,
   currentState: boolean,
-  changeState: React.Dispatch<React.SetStateAction<boolean>>}
+  changeState: React.Dispatch<React.SetStateAction<boolean>>,
+  changeModalState: React.Dispatch<React.SetStateAction<boolean>>}
 ) {
 
   const [noteTitle, setNoteTitle] = useState<string>('');
@@ -22,9 +23,12 @@ function CreateNoteModal(props: {
         timestamp: serverTimestamp(),
       })
 
+      // show successful note creation modal
+      props.changeModalState(true)
+
       const timer = setTimeout(() => {
         props.changeState(false)
-      }, 2000);
+      }, 1000);
 
       return () => clearTimeout(timer);
     }

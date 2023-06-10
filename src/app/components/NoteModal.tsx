@@ -5,39 +5,42 @@ import { IoCloseSharp } from 'react-icons/io5'
 function NoteModal(props: { 
     title: string, 
     description: string,
-    changeState: React.Dispatch<React.SetStateAction<boolean>>,
-    deleteNote: (id: string) => Promise<void>,
+    changeState: any,
+    deleteNote: any,
     id: string,
     updateData: any,
     noteTimestamp: any,
+    changeModalState: any
 }) {
 
     const [title, setTitle] = useState<string>(props.title)
     const [description, setDescription] = useState<string>(props.description)
 
     function handleSubmit(e: any) {
-        e.preventDefault()
+      e.preventDefault()
     }
 
     function handleDicard() {
-        // disable modal
-        props.changeState(false)
+      // disable modal
+      props.changeState(false)
     }
 
     function handleDelete() {
-        const timer = setTimeout(() => {
-            props.deleteNote(props.id)
-        }, 2000);
+      const timer = setTimeout(() => {
+        props.changeModalState(true)
 
-        return () => clearTimeout(timer)
+        props.deleteNote(props.id)
+      }, 2000);
+
+      return () => clearTimeout(timer)
     }
     
     function handleEdit() {
-        const timer = setTimeout(() => {
-            props.updateData(props.id, title, description, props.noteTimestamp)    
-        }, 2000);
+      const timer = setTimeout(() => {
+          props.updateData(props.id, title, description, props.noteTimestamp)    
+      }, 2000);
 
-        return () => clearTimeout(timer)
+      return () => clearTimeout(timer)
     }
     
   return (

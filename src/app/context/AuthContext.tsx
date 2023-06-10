@@ -5,7 +5,8 @@ import { auth } from '@/app/config/firebaseConfig'
 import { 
     onAuthStateChanged, 
     signInWithEmailAndPassword, 
-    UserCredential
+    UserCredential,
+    updateProfile
 } from 'firebase/auth'
 
 export const AuthContext = createContext<any>({});
@@ -28,7 +29,8 @@ export const AuthContextProvider = ({children}: { children: React.ReactNode}) =>
             setUser({
                 success: true,
                 email: user.email,
-                uid: user.uid
+                uid: user.uid,
+                displayName: user.displayName
             })
 
             setIsUserAuthenticated(true)
@@ -41,7 +43,8 @@ export const AuthContextProvider = ({children}: { children: React.ReactNode}) =>
         setUser({
             success: true,
             email: userCredentials.user.email,
-            uid: userCredentials.user.uid
+            uid: userCredentials.user.uid,
+            displayName: null // null when user first creates an account
         })
     }
 
@@ -63,8 +66,21 @@ export const AuthContextProvider = ({children}: { children: React.ReactNode}) =>
             })
     }
 
+    function updateDisplayName(name: string) {
+        updateProfile(auth.currentUser, {
+            displayName: name
+        })
+    }
+
     return (
-        <AuthContext.Provider value={{ user, setUser, signIn, isUserAuthenticated, setIsUserAuthenticated }}>
+        <AuthContext.Provider value={{ 
+            user, 
+            setUser, 
+            signIn, 
+            isUserAuthenticated, 
+            setIsUserAuthenticated, 
+            updateDisplayName 
+        }}>
             {children}
         </AuthContext.Provider>
     )

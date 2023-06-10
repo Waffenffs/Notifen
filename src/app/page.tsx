@@ -12,7 +12,6 @@ import { useRouter } from 'next/navigation'
 
 
 export default function Home() {
-  // master account: waffen.sultanofc@gmail.com / pogiako123
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [passwordInputIsActive, setPasswordInputisActive] = useState<boolean>(false);
@@ -54,7 +53,6 @@ export default function Home() {
   function handleSubmit(e: any) {
     e.preventDefault()
 
-    // TO-DO: call for the signin method using the context
     signIn(loginEmail, loginPassword)
   }
 
